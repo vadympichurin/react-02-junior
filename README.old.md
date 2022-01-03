@@ -10,13 +10,8 @@
 -  +Компоненты-функции
 -  +[Строгий режим](https://ru.reactjs.org/docs/strict-mode.html)
 -  +Передача данных через Props
-
-
-
-
-
-- Свойство defaultProps и дефолтные локальные изображения.
--  Пакет prop-types, свойство propTypes
+-  +Свойство defaultProps и дефолтные локальные изображения.
+-  +Пакет prop-types, свойство propTypes
 - [Инструменты разработчика - React DevTools](http://fecore.net.ua/books/rq7s2k-react/lesson-01/#react-devtools)
--  Работа с коллекциями, ключи
+-  +Работа с коллекциями, ключи
 -  Основы композиции компонентов, потомки (props.children). Делаем панель.

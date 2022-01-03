@@ -1,10 +1,13 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const Painting = ({ link, title, price, quantity }) => {
-  //   const { link, title, price } = props;
+import defaultImage from "../../static/default.jpg";
+
+const Painting = ({ link, title, price, quantity, author }) => {
+  //   const { link, title, price } = props; // деструктуризация объекта props
 
   return (
-    <div>
+    <li>
       <img
         src={link}
         alt={title}
@@ -13,10 +16,28 @@ const Painting = ({ link, title, price, quantity }) => {
       />
       <h2>{title}</h2>
       <p>Цена: {price} денег</p>
+      <p>
+        Автор: <a href={author.url}>{author.tag}</a>
+      </p>
       <p>Доступность: {quantity < 10 ? "заканчивается" : "есть в наличии"}</p>
       <button type="button">Добавить в корзину</button>
-    </div>
+    </li>
   );
+};
+
+Painting.defaultProps = {
+  link: defaultImage,
+};
+
+Painting.propTypes = {
+  link: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+  author: PropTypes.shape({
+    tag: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }),
 };
 
 export default Painting;
