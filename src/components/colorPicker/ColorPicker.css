@@ -1,0 +1,11 @@
+.ColorPicker {}
+
+.ColorPicker__title {}
+
+.ColorPicker__color {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 4px;
+}
+

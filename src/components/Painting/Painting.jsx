@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 
 import defaultImage from "../../static/default.jpg";
 
+import './Painting.css';
+
 const Painting = ({ link, title, price, quantity, author }) => {
   //   const { link, title, price } = props; // деструктуризация объекта props
 
   return (
-    <li>
+    <li className="Painting">
       <img
         src={link}
         alt={title}
