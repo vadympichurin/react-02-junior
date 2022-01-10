@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import styles from './Notification.module.css';
 
-const Notification = ({ text, type }) => <p className={styles[type]}>{text}</p>;
+const Notification = ({ text, type }) => (
+  <p className={type === 'success' ? styles.success : styles.error}>{text}</p>
+);
 
 Notification.defaultProps = {
   type: 'success',

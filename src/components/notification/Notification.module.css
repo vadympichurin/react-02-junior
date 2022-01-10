@@ -1,7 +1,10 @@
+@value font-primary-color from '../../vars.module.css';
+
 .notification {
     line-height: 1.5;
     padding: 10px 20px;
     font-size: 16px;
+    color: font-primary-color;
 }
 
 .error {
