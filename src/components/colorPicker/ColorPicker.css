@@ -6,6 +6,12 @@
     display: inline-block;
     width: 40px;
     height: 40px;
-    margin: 4px;
+    margin: 10px;
+    border: none;
+    outline: none;
+}
+
+.active__color {
+    transform: scale(1.4);
 }
 
