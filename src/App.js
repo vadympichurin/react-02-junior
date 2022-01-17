@@ -7,25 +7,55 @@ import Notification from './components/notification/Notification';
 import Layout from './components/layout/Layout';
 import Counter from './components/counter/Counter';
 import Dropdown from './components/dropdown/Dropdown';
+import TodoList from './components/todoList/TodoList';
 
 import paintings from './paintings.json';
 
-const colors = [
-  { label: 'red', color: '#F44336' },
-  { label: 'green', color: '#4CAF50' },
-  { label: 'blue', color: '#2196F3' },
-  { label: 'grey', color: '#607D8B' },
-  { label: 'pink', color: '#E91E63' },
-];
+// const colors = [
+//   { label: 'red', color: '#F44336' },
+//   { label: 'green', color: '#4CAF50' },
+//   { label: 'blue', color: '#2196F3' },
+//   { label: 'grey', color: '#607D8B' },
+//   { label: 'pink', color: '#E91E63' },
+// ];
 
-const App = () => {
-  return (
-    <>
-      <ColorPicker colors={colors} />
-      {/* <Dropdown /> */}
-      {/* <Counter initialValue={10} /> */}
-    </>
-  );
-};
+class App extends React.Component {
+  state = {
+    todos: [
+      { id: 'id-1', text: 'Learn React', completed: false },
+      { id: 'id-2', text: 'Learn React Router', completed: true },
+      { id: 'id-3', text: 'Learn React Redux', completed: false },
+    ],
+  };
+
+  deleteTodo = todoId => {
+    this.setState(prevState => ({
+      todos: prevState.todos.filter(todo => todo.id !== todoId),
+    }));
+  };
+
+  render() {
+    const { todos } = this.state;
+
+    // const completedTodos = todos.filter(todo => todo.completed);
+    const completedTodos = todos.reduce(
+      (acc, todo) => (todo.completed ? acc + 1 : acc),
+      0,
+    );
+
+    return (
+      <>
+        <div>
+          <p>Загальна кількість todo: {todos.length}</p>
+          <p>Кількість виконаних: {completedTodos}</p>
+        </div>
+        <TodoList todos={todos} onDeleteTodo={this.deleteTodo} />
+        {/* <ColorPicker colors={colors} /> */}
+        {/* <Dropdown /> */}
+        {/* <Counter initialValue={10} /> */}
+      </>
+    );
+  }
+}
 
 export default App;
