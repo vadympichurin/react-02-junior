@@ -8,6 +8,7 @@ import Layout from './components/layout/Layout';
 import Counter from './components/counter/Counter';
 import Dropdown from './components/dropdown/Dropdown';
 import TodoList from './components/todoList/TodoList';
+import Form from './components/Form/Form';
 
 import paintings from './paintings.json';
 
@@ -19,13 +20,15 @@ import paintings from './paintings.json';
 //   { label: 'pink', color: '#E91E63' },
 // ];
 
+const initialTodos = [
+  { id: 'id-1', text: 'Learn React', completed: false },
+  { id: 'id-2', text: 'Learn React Router', completed: true },
+  { id: 'id-3', text: 'Learn React Redux', completed: false },
+];
+
 class App extends React.Component {
   state = {
-    todos: [
-      { id: 'id-1', text: 'Learn React', completed: false },
-      { id: 'id-2', text: 'Learn React Router', completed: true },
-      { id: 'id-3', text: 'Learn React Redux', completed: false },
-    ],
+    todos: initialTodos,
   };
 
   deleteTodo = todoId => {
@@ -33,6 +36,10 @@ class App extends React.Component {
       todos: prevState.todos.filter(todo => todo.id !== todoId),
     }));
   };
+
+  formSubmitHandler = data => {
+    console.log("data : ", data);
+  }
 
   render() {
     const { todos } = this.state;
@@ -45,11 +52,15 @@ class App extends React.Component {
 
     return (
       <>
-        <div>
+        <Form onSubmitHandler={this.formSubmitHandler}/>
+        <Form onSubmitHandler={this.formSubmitHandler}/>
+
+
+        {/* <div>
           <p>Загальна кількість todo: {todos.length}</p>
           <p>Кількість виконаних: {completedTodos}</p>
         </div>
-        <TodoList todos={todos} onDeleteTodo={this.deleteTodo} />
+        <TodoList todos={todos} onDeleteTodo={this.deleteTodo} /> */}
         {/* <ColorPicker colors={colors} /> */}
         {/* <Dropdown /> */}
         {/* <Counter initialValue={10} /> */}
