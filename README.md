@@ -1,4 +1,3 @@
-
 - Два слова про render и commit фазы (почему логи в методе render 2 раза идут)
 - Паттерн controlled element
 - Создаем форму регистрации
@@ -15,4 +14,10 @@
 - Рассказать про [classnames](https://github.com/JedWatson/classnames) ( пример
   в колорпикере и выполненное туду)
 
-
+state = { 
+  checkboxes: { 
+    one: false, 
+    two: false, 
+    three: false 
+  }
+}

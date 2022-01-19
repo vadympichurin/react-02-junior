@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 
 import './ColorPicker.css';
 
@@ -14,13 +15,9 @@ class ColorPicker extends Component {
   };
 
   makeColorClasses = index => {
-    const colorClasses = ['ColorPicker__color'];
-
-    if (index === this.state.activeColorIndex) {
-      colorClasses.push('active__color');
-    }
-
-    return colorClasses.join(' ');
+    return classNames('ColorPicker__color', {
+      'active__color': index === this.state.activeColorIndex,
+    });
   };
 
   render() {
@@ -37,7 +34,10 @@ class ColorPicker extends Component {
           return (
             <button
               key={label}
-              className={this.makeColorClasses(index)}
+              // className={this.makeColorClasses(index)}
+              className={classNames('ColorPicker__color', {
+                'active__color': index === activeColorIndex,
+              })}
               style={{ backgroundColor: color }}
               onClick={() => this.setActiveColor(index)}
             ></button>
