@@ -12,6 +12,8 @@ import TodoList from './components/todoList/TodoList';
 import Form from './components/Form/Form';
 import TodoEditor from './components/todoList/TodoEditor';
 import Filter from './components/Filter/Filter';
+import Modal from './components/Modal/Modal';
+import Clock from './components/Clock/Clock';
 
 import paintings from './paintings.json';
 
@@ -23,16 +25,37 @@ import paintings from './paintings.json';
 //   { label: 'pink', color: '#E91E63' },
 // ];
 
-const initialTodos = [
-  { id: 'id-1', text: 'Learn React', completed: false },
-  { id: 'id-2', text: 'Learn React Router', completed: true },
-  { id: 'id-3', text: 'Learn Redux', completed: false },
-];
+// const initialTodos = [
+//   { id: 'id-1', text: 'Learn React', completed: false },
+//   { id: 'id-2', text: 'Learn React Router', completed: true },
+//   { id: 'id-3', text: 'Learn Redux', completed: false },
+// ];
 
 class App extends React.Component {
   state = {
-    todos: initialTodos,
+    todos: [],
     filter: '',
+    showModal: false,
+  };
+
+  componentDidMount() {
+    const todos = JSON.parse(localStorage.getItem('todos'));
+
+    if (todos) {
+      this.setState({ todos });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.todos !== this.state.todos) {
+      localStorage.setItem('todos', JSON.stringify(this.state.todos));
+    }
+  }
+
+  toggleModal = () => {
+    this.setState(prevState => ({
+      showModal: !prevState.showModal,
+    }));
   };
 
   addTodo = text => {
@@ -54,23 +77,6 @@ class App extends React.Component {
     }));
   };
 
-  // todoCheckedToggle = todoId => {
-  //   console.log(todoId);
-
-  //   this.setState(prevState => ({
-  //     todos: prevState.todos.map(todo => {
-  //       if(todo.id === todoId) {
-  //         return {
-  //           ...todo,
-  //           completed: !todo.completed,
-  //         }
-  //       };
-
-  //       return todo;
-  //     })
-  //   }))
-  // };
-
   todoCheckedToggle = todoId => {
     this.setState(prevState => ({
       todos: prevState.todos.map(todo =>
@@ -88,9 +94,8 @@ class App extends React.Component {
   };
 
   render() {
-    const { todos, filter } = this.state;
+    const { todos, filter, showModal } = this.state;
 
-    // const completedTodos = todos.filter(todo => todo.completed);
     const completedTodos = todos.reduce(
       (acc, todo) => (todo.completed ? acc + 1 : acc),
       0,
@@ -105,22 +110,45 @@ class App extends React.Component {
       <>
         {/* <Form onSubmitHandler={this.formSubmitHandler}/> */}
 
-        <div>
+       {showModal && <Clock />}
+
+        {/* {showModal && (
+          <Modal onClose={this.toggleModal} >
+            <h2>Modal title</h2>
+            <p>
+              React очень любит класть все приложение при любой ошибке. Метод
+              componentDidCatch срабатывает при ошибке в дочернем компоненте и
+              позволяет родительским компонентам отлавливать ошибки в детях,
+              отображая запасной интерфейс. В результате, при ошибке, интерфейс
+              не падает.
+            </p>
+
+            <button type="button" onClick={this.toggleModal}>
+              Close modal
+            </button>
+          </Modal>
+        )} */}
+
+        <button type="button" onClick={this.toggleModal}>
+          Toggle modal
+        </button>
+
+        {/* <div>
           <p>Загальна кількість todo: {todos.length}</p>
           <p>Кількість виконаних: {completedTodos}</p>
-        </div>
+        </div> */}
 
-        <TodoEditor addTodo={this.addTodo} />
+        {/* <TodoEditor addTodo={this.addTodo} /> */}
         <br />
         <br />
 
-        <Filter filter={filter} changeFilter={this.handleChangeFilter} />
+        {/* <Filter filter={filter} changeFilter={this.handleChangeFilter} /> */}
 
-        <TodoList
+        {/* <TodoList
           todos={filteredTodos}
           onDeleteTodo={this.deleteTodo}
           toggleHandler={this.todoCheckedToggle}
-        />
+        /> */}
 
         {/* <ColorPicker colors={colors} /> */}
         {/* <Dropdown /> */}
