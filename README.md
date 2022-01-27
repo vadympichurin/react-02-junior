@@ -8,6 +8,7 @@
   - Слушатель на keydown для Escape
   - Слушатель на клик по Backdrop
 - Таймер и утечка памяти с setState() без componentWillUnmount
+
 - Табы (shouldComponentUpdate)
   - аналогия с колорпикером = главное знать технику
   - убираем лишние рендеры после setState

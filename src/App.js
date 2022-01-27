@@ -1,21 +1,12 @@
 import React from 'react';
 import shortid from 'shortid';
 
-import PaintingList from './components/PaintingList/PaintingList';
-import Panel from './components/Panel/Panel';
-import ColorPicker from './components/colorPicker/ColorPicker';
-import Notification from './components/notification/Notification';
-import Layout from './components/layout/Layout';
-import Counter from './components/counter/Counter';
-import Dropdown from './components/dropdown/Dropdown';
 import TodoList from './components/todoList/TodoList';
-import Form from './components/Form/Form';
 import TodoEditor from './components/todoList/TodoEditor';
 import Filter from './components/Filter/Filter';
 import Modal from './components/Modal/Modal';
-import Clock from './components/Clock/Clock';
-
-import paintings from './paintings.json';
+import IconButton from './components/IconButton/IconButton';
+import { ReactComponent as AddIcon } from './static/icons/add.svg';
 
 // const colors = [
 //   { label: 'red', color: '#F44336' },
@@ -50,6 +41,13 @@ class App extends React.Component {
     if (prevState.todos !== this.state.todos) {
       localStorage.setItem('todos', JSON.stringify(this.state.todos));
     }
+
+    if (
+      this.state.todos.length > prevState.todos.length &&
+      prevState.todos.length !== 0
+    ) {
+      this.toggleModal();
+    }
   }
 
   toggleModal = () => {
@@ -69,6 +67,8 @@ class App extends React.Component {
     this.setState(prevState => ({
       todos: [todo, ...prevState.todos],
     }));
+
+    // this.toggleModal();
   };
 
   deleteTodo = todoId => {
@@ -108,51 +108,34 @@ class App extends React.Component {
 
     return (
       <>
-        {/* <Form onSubmitHandler={this.formSubmitHandler}/> */}
-
-       {showModal && <Clock />}
-
-        {/* {showModal && (
-          <Modal onClose={this.toggleModal} >
-            <h2>Modal title</h2>
-            <p>
-              React очень любит класть все приложение при любой ошибке. Метод
-              componentDidCatch срабатывает при ошибке в дочернем компоненте и
-              позволяет родительским компонентам отлавливать ошибки в детях,
-              отображая запасной интерфейс. В результате, при ошибке, интерфейс
-              не падает.
-            </p>
-
+        {showModal && (
+          <Modal onClose={this.toggleModal}>
+            <TodoEditor addTodo={this.addTodo} />
             <button type="button" onClick={this.toggleModal}>
               Close modal
             </button>
           </Modal>
-        )} */}
+        )}
 
-        <button type="button" onClick={this.toggleModal}>
-          Toggle modal
-        </button>
+        <IconButton onClick={this.toggleModal}>
+          <AddIcon width="40" height="40" fill="#fff" />
+        </IconButton>
 
-        {/* <div>
+        <div>
           <p>Загальна кількість todo: {todos.length}</p>
           <p>Кількість виконаних: {completedTodos}</p>
-        </div> */}
+        </div>
 
-        {/* <TodoEditor addTodo={this.addTodo} /> */}
         <br />
         <br />
 
-        {/* <Filter filter={filter} changeFilter={this.handleChangeFilter} /> */}
+        <Filter filter={filter} changeFilter={this.handleChangeFilter} />
 
-        {/* <TodoList
+        <TodoList
           todos={filteredTodos}
           onDeleteTodo={this.deleteTodo}
           toggleHandler={this.todoCheckedToggle}
-        /> */}
-
-        {/* <ColorPicker colors={colors} /> */}
-        {/* <Dropdown /> */}
-        {/* <Counter initialValue={10} /> */}
+        />
       </>
     );
   }
