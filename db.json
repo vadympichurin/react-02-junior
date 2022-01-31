@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "id": "id-1",
+      "text": "Learn React",
+      "completed": true
+    },
+    {
+      "id": "id-2",
+      "text": "Learn React Router",
+      "completed": false
+    },
+    {
+      "id": "id-3",
+      "text": "Learn Redux",
+      "completed": false
+    }
+  ],
+  "contacts": [
+    "1",
+    "2",
+    "3"
+  ]
+}
