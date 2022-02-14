@@ -1,29 +1,31 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import HomePage from './pages/HomePage';
-import AuthorsPage from './pages/AuthorsPage';
-import BooksPage from './pages/BooksPage';
-import NotFoundPage from './pages/NotFoundPage';
-import Navigation from './components/Navigation/Navigation';
-import BookDetailsPage from './pages/BookDetailsPage';
+import AppBar from './components/AppBar/AppBar';
+import routes from './routes';
+
+const HomePage = lazy(() => import('./pages/HomePage' /* webpackChunkName: "home-page" */));
+const AuthorsPage = lazy(() => import('./pages/AuthorsPage' /* webpackChunkName: "authors-page" */));
+const BooksPage = lazy(() => import('./pages/BooksPage' /* webpackChunkName: "books-page" */));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage' /* webpackChunkName: "notFound-page" */));
+const BookDetailsPage = lazy(() => import('./pages/BookDetailsPage' /* webpackChunkName: "bookDetails-page" */));
 
 const App = () => {
   return (
     <>
-      <Navigation />
+      <AppBar />
 
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/authors" component={AuthorsPage} />
-        <Route path="/books/:bookId" component={BookDetailsPage} />
-        <Route path="/books" component={BooksPage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Switch>
+          <Route exact path={routes.home} component={HomePage} />
+          <Route path={routes.authors} component={AuthorsPage} />
+          <Route path={routes.bookDetails} component={BookDetailsPage} />
+          <Route path={routes.books} component={BooksPage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Suspense>
     </>
   );
 };
-
-// http://localhost:3000/cfhgvbjhj
 
 export default App;

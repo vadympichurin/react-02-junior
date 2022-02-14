@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import routes from '../routes';
 
 class BookDetailsPage extends Component {
   initialValue = {
@@ -21,10 +22,31 @@ class BookDetailsPage extends Component {
     this.setState({ ...response.data });
   }
 
+  handleGoBack = () => {
+    const { location, history } = this.props;
+
+    // if(location.state && location.state.from){
+    //   return history.push(location.state.from);
+    // }
+
+    // history.push(routes.books);
+
+    history.push(location?.state?.from || routes.books);
+  }
+
   render() {
+    const { location } = this.props;
+    console.log(location);
+
     return (
       <>
         <h1>Book Details: Book N{this.props.match.params.bookId} </h1>
+        <button
+          type="button"
+          onClick={this.handleGoBack}
+        >
+          Go back
+        </button>
         <img src={this.state.imgUrl} alt={this.state.title} />
         <h3>{this.state.title}</h3>
         <p>{this.state.descr}</p>

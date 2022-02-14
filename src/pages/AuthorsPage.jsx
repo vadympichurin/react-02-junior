@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { NavLink, Route } from 'react-router-dom';
 
-import AuthorBooks from '../components/AuthorBooks/AuthorBooks';
+// import AuthorBooks from '../components/AuthorBooks/AuthorBooks';
+import BookList from '../components/BookList/BookList';
+import routes from '../routes';
+
 
 class AuthorsPage extends Component {
   state = {
@@ -37,17 +40,16 @@ class AuthorsPage extends Component {
         </ul>
 
         <Route
-          path="/authors/:authorId"
+          path={routes.authorsDetails}
           render={props => {
             const authorId = Number(props.match.params.authorId);
             const author = this.state.authors.find(
               author => author.id === authorId,
             );
 
-            return author && <AuthorBooks {...props} books={author.books} />;
+            return author && <BookList {...props} books={author.books} />;
           }}
         />
-
       </>
     );
   }
