@@ -1,35 +1,34 @@
 {
-  "name": "react-02-junior",
+  "name": "react-18",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.25.0",
-    "classnames": "^2.3.1",
-    "json-server": "^0.17.0",
-    "modern-normalize": "^1.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
+    "classnames": "^2.2.6",
+    "faker": "^4.1.0",
+    "json-server": "^0.16.1",
+    "modern-normalize": "^0.6.0",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "5.0.0",
-    "sass": "^1.45.2",
-    "shortid": "^2.2.16",
-    "web-vitals": "^2.1.2"
+    "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.9",
+    "shortid": "^2.2.16"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "server": "json-server --port 4040 --delay 400 --watch db.json"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -44,8 +43,9 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.6.0",
-    "prettier": "^2.5.1",
-    "prop-types": "^15.8.0"
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.10",
+    "prettier": "^2.0.5",
+    "prop-types": "^15.7.2"
   }
 }
