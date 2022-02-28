@@ -19,23 +19,23 @@ class TodosView extends Component {
     showModal: false,
   };
 
-  componentDidMount() {
-    const todos = localStorage.getItem('todos');
-    const parsedTodos = JSON.parse(todos);
+  // componentDidMount() {
+  //   const todos = localStorage.getItem('todos');
+  //   const parsedTodos = JSON.parse(todos);
 
-    if (parsedTodos) {
-      this.setState({ todos: parsedTodos });
-    }
-  }
+  //   if (parsedTodos) {
+  //     this.setState({ todos: parsedTodos });
+  //   }
+  // }
 
-  componentDidUpdate(prevProps, prevState) {
-    const nextTodos = this.state.todos;
-    const prevTodos = prevState.todos;
+  // componentDidUpdate(prevProps, prevState) {
+  //   const nextTodos = this.state.todos;
+  //   const prevTodos = prevState.todos;
 
-    if (nextTodos !== prevTodos) {
-      localStorage.setItem('todos', JSON.stringify(nextTodos));
-    }
-  }
+  //   if (nextTodos !== prevTodos) {
+  //     localStorage.setItem('todos', JSON.stringify(nextTodos));
+  //   }
+  // }
 
   toggleModal = () => {
     this.setState(({ showModal }) => ({
@@ -68,7 +68,7 @@ class TodosView extends Component {
         {showModal && (
           <Modal onClose={this.toggleModal}>
             {/* <TodoEditor onSubmit={this.addTodo} /> */}
-            <TodoEditor />
+            <TodoEditor toggleModal={this.toggleModal} />
           </Modal>
         )}
       </Container>

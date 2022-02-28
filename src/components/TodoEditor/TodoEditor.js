@@ -15,9 +15,15 @@ class TodoEditor extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    if (this.state.message === '') {
+      alert('Please type your todo!');
+      return;
+    }
+
     this.props.onSubmit(this.state.message);
 
     this.setState({ message: '' });
+    this.props.toggleModal();
   };
 
   render() {
